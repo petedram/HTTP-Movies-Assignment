@@ -33,5 +33,6 @@ function MovieDetails({ movie }) {
     <Link to={`/movies/${movie.id}`}>
       <MovieCard movie={movie} />
     </Link>
+
   );
 }

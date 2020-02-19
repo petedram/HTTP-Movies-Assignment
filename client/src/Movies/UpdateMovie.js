@@ -30,7 +30,7 @@ const UpdateMovie = props => {
         let value = ev.target.value;
     
 
-        //update to handle array of stars
+ //update to handle array of stars
         setItem({
           ...item,
           [ev.target.name]: value
