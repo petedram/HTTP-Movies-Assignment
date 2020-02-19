@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Movie from "./Movie";
 
 const newItem = {
     id: "",
     title: "",
     director: "",
     metascore: '',
-    stars: ['']
+    stars: ['one','two','three'],
   };
 
 const AddMovie = props => {
@@ -19,15 +20,34 @@ const AddMovie = props => {
         let value = ev.target.value;
     
  //update to handle array of stars
-        setNewMovie({
-          ...newMovie,
-          [ev.target.name]: value
-        });
+
+        if (ev.target.name === 'stars') {
+            console.log('count', ev.target.name);
+            
+            // newMovie.stars[0] = ev.target.value
+            // // newMovie.forceUpdate();
+                
+        } else {
+            setNewMovie({
+                ...newMovie,
+                [ev.target.name]: value
+              });
+        }
+
+        console.log('change', ev.target.name);
         console.log('item after change', newMovie);
 
       };
 
     const handleSubmit = e => {
+
+
+        // adding to text box addes to stars[0]
+        // button to add star: creates new input and adds to stars.length+1 i.e. stars[1]
+
+
+
+
         e.preventDefault();
         axios
           .post(`http://localhost:5000/api/movies/`, newMovie)
@@ -73,18 +93,15 @@ const AddMovie = props => {
               value={newMovie.metascore}
             />
             <div className="baseline" />
-    
-            {newMovie.stars.map(star => (
+
             <input
                 type='string'
                 name='stars'
                 onChange={changeHandler}
-                placeholder='stars'
-                value={star}
-                key={star} 
-                className="movie-star"
+                placeholder='star'
+                value={newMovie.stars[0]}
             />
-          ))}
+       
             <div className="baseline" />
     
     
